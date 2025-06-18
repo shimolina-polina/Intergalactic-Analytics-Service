@@ -1,0 +1,53 @@
+.uploadButton {
+    font-size: var(--text-lg);
+    padding: 15.5px 51.5px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: #201b10;
+}
+
+.primary {
+    background-color: #fff;
+}
+
+.uploaded {
+    background-color: #cb81ff;
+    cursor: auto;
+}
+
+.parsing {
+    background-color: #cb81ff;
+    width: 330px;
+    cursor: auto;
+}
+
+.done {
+    background-color: #d4fae6;
+}
+
+.error {
+    background-color: #ff5f00;
+    color: #fff;
+}
+
+.hint {
+    margin-top: 10px;
+    color: #201b10;
+}
+
+.hintError {
+    color: #ff5f00;
+}
+
+.loaderImg {
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

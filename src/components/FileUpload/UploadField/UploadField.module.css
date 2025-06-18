@@ -1,0 +1,42 @@
+.container {
+    width: 100%;
+    height: 240px;
+    background-color: #EACDFF;
+    border-radius: 40px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    font-size: var(--text-lg);
+    line-height: 110%;
+}
+
+.dragOver {
+    background-color: #D4FAE6;
+}
+
+.uploaded {
+    background-color: transparent;
+    border: 1px solid #201B10;
+    cursor: auto;
+}
+
+.uploadButton {
+    font-size: var(--text-lg);
+    padding: 15.5px 51.5px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.hint {
+    margin-top: 10px;
+}
+ 
+.notDisplayed {
+    display: none;
+}

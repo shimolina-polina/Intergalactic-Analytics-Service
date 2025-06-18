@@ -1,0 +1,43 @@
+.button {
+  padding: 20.5px 27px;
+  border-radius: 25px;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  line-height: 110%;
+}
+
+.primary {
+  background-color: #2AE881;
+  color: #201B10;
+}
+
+.primary:hover {
+  opacity: 0.9;
+}
+
+.disabled {
+  background-color: #C0C0C0;
+  color: #787878;
+  cursor: not-allowed;
+}
+
+.download {
+  background-color: #FCE300;
+  color: #201B10;
+}
+
+.download:hover {
+  opacity: 0.9;
+}
+
+.clear {
+  background-color: #201B10;
+  color: white;
+}
+
+.clear:hover {
+  opacity: 0.9;
+}

@@ -1,0 +1,42 @@
+.link {
+    display: block;
+    text-decoration: none;
+    color: #201B10;
+    font-size: var(--text-base);
+    position: relative;
+}
+
+.link::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 0;
+    background-color: black;
+    position: absolute;
+    bottom: -10px;
+    left: 10px;
+    right: 10px;
+    margin: 0 auto;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.link.selected::after {
+    width: calc(100% - 20px);
+    opacity: 1;
+}
+
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 10px;
+    transition: all 0.3s ease;
+}
+
+.buttonLogo {
+    width: 35px;
+    height: 35px;
+}

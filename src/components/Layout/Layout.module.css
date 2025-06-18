@@ -1,0 +1,14 @@
+.layoutContainer {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    background-color: #FCE2FF;
+    width: 100vw;
+    height: 100vh;
+    gap: 80px;
+}
+
+.childrenContainer {
+    display: flex;
+    flex-direction: column;
+}

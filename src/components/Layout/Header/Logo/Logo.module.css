@@ -1,0 +1,11 @@
+.svgContainer{
+    width: 268px;
+    height: 59px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.svgImage {
+
+}

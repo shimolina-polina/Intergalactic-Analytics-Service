@@ -1,0 +1,13 @@
+.container {
+    text-transform: uppercase;
+    font-size: var(--text-base); 
+    background-color: #CB81FF;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    line-height: 0.9rem;
+    padding-left: 6.4px;
+    padding-right: 6.4px;
+}
