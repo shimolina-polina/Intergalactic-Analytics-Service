@@ -8,7 +8,7 @@ export default function AnalyticsPage () {
     <UploadProvider>
       <div className={styles.container}>
         <FileUploadField />
-        <Highlights dataExists={true} />
+        <Highlights />
       </div>
     </UploadProvider>
     

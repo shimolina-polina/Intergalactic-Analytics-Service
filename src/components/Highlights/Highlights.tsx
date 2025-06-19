@@ -1,28 +1,38 @@
+import { useAggregationStore } from '../../store/useAggregationStore';
 import HighlightItem from './HighlightItem/HighlightItem';
 import styles from './Highlights.module.css';
+import type { AggregatedResult } from '../../services/aggregateService';
+import { useEffect } from 'react';
 
-const metrics = [
-    { value: '1000', label: 'общие расходы в галактических кредитах' },
-    { value: '45056', label: 'количество обработанных записей' },
-    { value: '1 апреля', label: 'день года с минимальными расходами' },
-    { value: 'humans', label: 'цивилизация с максимальными расходами' },
-    { value: 'blobs', label: 'цивилизация с минимальными расходами' },
-    { value: '2 апреля', label: 'день года с максимальными расходами' },
-    { value: '678899', label: 'максимальная сумма расходов за день' },
-    { value: '876', label: 'средние расходы в галактических кредитах' }
+const metricsMap: { key: keyof AggregatedResult; label: string }[] = [
+    { key: 'total_spend_galactic', label: 'общие расходы в галактических кредитах' },
+    { key: 'rows_affected', label: 'количество обработанных записей' },
+    { key: 'less_spent_at', label: 'день года с минимальными расходами' },
+    { key: 'big_spent_at', label: 'день года с максимальными расходами' },
+    //{ key: 'less_spent_value', label: 'минимальная сумма расходов за день' },
+    { key: 'big_spent_value', label: 'максимальная сумма расходов за день' },
+    { key: 'average_spend_galactic', label: 'средние расходы в галактических кредитах' },
+    { key: 'less_spent_civ', label: 'цивилизация с минимальными расходами' },
+    { key: 'big_spent_civ', label: 'цивилизация с максимальными расходами' },
 ];
 
-export default function Highlights({ dataExists }: { dataExists: boolean }) {
+export default function Highlights() {
+    const metrics = useAggregationStore((s) => s.metrics);
+
+    useEffect(() => {
+        console.log('metrics changed', metrics);
+    }, [metrics]);
+
     return (
         <div className={styles.container}>
-            {!dataExists ? (
+            {!metrics ? (
                 <p className={styles.placeholder}>
                     Здесь <br /> появятся хайлайты
                 </p>
             ) : (
                 <div className={styles.grid}>
-                    {metrics.map((metric, index) => (
-                        <HighlightItem key={index} value={metric.value} label={metric.label}/>
+                    {metricsMap.map(({ key, label }) => (
+                        <HighlightItem key={key} value={metrics[key]} label={label} />
                     ))}
                 </div>
             )}

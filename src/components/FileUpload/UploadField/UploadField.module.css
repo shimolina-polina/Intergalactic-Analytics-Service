@@ -18,7 +18,7 @@
     background-color: #D4FAE6;
 }
 
-.uploaded {
+.disabled {
     background-color: transparent;
     border: 1px solid #201B10;
     cursor: auto;
