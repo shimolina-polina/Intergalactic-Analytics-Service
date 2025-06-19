@@ -11,6 +11,11 @@
     background-color: #fff;
 }
 
+.start {
+    background-color: #2AE881;
+    border-radius: 25px;
+}
+
 .uploaded {
     background-color: #cb81ff;
     cursor: auto;

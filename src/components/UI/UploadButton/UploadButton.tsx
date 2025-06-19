@@ -2,8 +2,10 @@ import styles from './UploadButton.module.css';
 
 export type UploadState = 'primary' | 'uploaded' | 'parsing' | 'done' | 'error';
 
+export type DownloadState = 'start' | 'parsing' | 'done' | 'error';
+
 interface UploadButtonProps {
-    state: UploadState;
+    state: UploadState | DownloadState;
     text: string;
     hintText: string;
     onClick?: () => void;
@@ -34,7 +36,7 @@ export default function UploadButton({
                     )}
                 </button>
                 <button
-                    className={`${styles.clearButton} ${state === 'primary' || state === 'parsing' ? styles.hidden : ''}`}
+                    className={`${styles.clearButton} ${state === 'primary' || state === 'parsing' || state === 'start' ? styles.hidden : ''}`}
                     onClick={onClear}
                 >
                     <img src="/close.svg" alt="Очистить поле" className={styles.crossImg} />
