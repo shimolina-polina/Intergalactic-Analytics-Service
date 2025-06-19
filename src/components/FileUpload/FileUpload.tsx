@@ -1,11 +1,11 @@
-import { useAggregationStore } from '../../../store/useAggregationStore';
+import { useAggregationStore } from '../../store/useAggregationStore';
 import styles from './FileUpload.module.css';
 import SubmitButton from './SubmitButton/SubmitButton';
 import UploadField from './UploadField/UploadField';
-import { aggregateService } from '../../../services/aggregateService';
+import { aggregateService } from '../../services/aggregateService';
 import { useState } from 'react';
-import { normalizeMetrics } from '../../../utils/normalizeMetrics';
-import { useUpload as useUploadState } from '../../../context/UploadContext/UploadContext';
+import { normalizeMetrics } from '../../utils/normalizeMetrics';
+import { useUpload as useUploadState } from '../../context/UploadContext/UploadContext'
 
 export default function FileUploadField() {
     const setMetrics = useAggregationStore((state) => state.setMetrics);
@@ -22,16 +22,10 @@ export default function FileUploadField() {
 
         try {
             if (file) {
-                await aggregateService.streamAggregation(
-                    file,
-                    (data) => {
-                        setMetrics(normalizeMetrics(data));
-                        console.log(data);
-                    },
-                    () => {
-                        setUploadState('done');
-                    },
-                );
+                await aggregateService.streamAggregation(file, (data) => {
+                    setMetrics(normalizeMetrics(data));
+                    console.log(data);
+                }, () => {setUploadState('done')});
             }
         } catch (err) {
             setError(`Произошла ошибка при обработке файла: ${err}`);

@@ -1,5 +1,5 @@
-import FileUploadField from '../../components/AnalyticsComponents/FileUpload/FileUpload';
-import Highlights from '../../components/AnalyticsComponents/Highlights/Highlights';
+import FileUploadField from '../../components/FileUpload/FileUpload';
+import Highlights from '../../components/Highlights/Highlights';
 import { UploadProvider } from '../../context/UploadContext/UploadContext';
 import styles from './AnalyticsPage.module.css';
 

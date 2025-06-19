@@ -1,7 +1,7 @@
-import { useAggregationStore } from '../../../store/useAggregationStore';
+import { useAggregationStore } from '../../store/useAggregationStore';
 import HighlightItem from './HighlightItem/HighlightItem';
 import styles from './Highlights.module.css';
-import type { AggregatedResult } from '../../../services/aggregateService';
+import type { AggregatedResult } from '../../services/aggregateService';
 import { useEffect } from 'react';
 
 const metricsMap: { key: keyof AggregatedResult; label: string }[] = [

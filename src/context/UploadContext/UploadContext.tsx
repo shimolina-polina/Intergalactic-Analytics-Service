@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
-import type { UploadState } from '../../components/AnalyticsComponents/FileUpload/UploadField/UploadButton/UploadButton';
+import type { UploadState } from '../../components/UI/UploadButton/UploadButton';
 
 interface UploadContextType {
     uploadState: UploadState;

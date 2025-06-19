@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './UploadField.module.css';
-import UploadButton from './UploadButton/UploadButton';
-import { useUpload as useUploadState } from '../../../../context/UploadContext/UploadContext';
-import type { UploadState } from './UploadButton/UploadButton';
-import { useAggregationStore } from '../../../../store/useAggregationStore';
+import UploadButton from '../../UI/UploadButton/UploadButton';
+import { useUpload as useUploadState } from '../../../context/UploadContext/UploadContext';
+import type { UploadState } from '../../UI/UploadButton/UploadButton';
+import { useAggregationStore } from '../../../store/useAggregationStore';
 
 type InfoObject = {
     text: string;
@@ -106,10 +106,10 @@ export default function UploadField({ setFile }: { setFile: (file: File | undefi
     const handleClear = () => {
         setFile(undefined);
         setUploadState('primary');
-        setFileName('');
+        setFileName('')
 
         setMetrics(null);
-        setError('');
+        setError('')
 
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
