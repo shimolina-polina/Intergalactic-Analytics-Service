@@ -5,7 +5,7 @@ import UploadField from './UploadField/UploadField';
 import { aggregateService } from '../../../services/aggregateService';
 import { useState } from 'react';
 import { normalizeMetrics } from '../../../utils/normalizeMetrics';
-import { useUpload as useUploadState } from '../../../context/UploadContext/UploadContext';
+import { useUploadStore } from '../../../store/useUploadStore';
 
 export default function FileUploadField() {
     const setMetrics = useAggregationStore((state) => state.setMetrics);
@@ -13,7 +13,8 @@ export default function FileUploadField() {
     const setError = useAggregationStore((state) => state.setError);
 
     const [file, setFile] = useState<File | undefined>(undefined);
-    const { setUploadState } = useUploadState();
+    const setUploadState = useUploadStore((s) => s.setUploadState);
+
 
     const handleFileUpload = async () => {
         console.log('started');

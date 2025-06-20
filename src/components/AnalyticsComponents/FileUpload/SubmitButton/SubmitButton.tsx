@@ -1,9 +1,9 @@
 import Button from '../../../UI/Button/Button';
 import styles from './SubmitButton.module.css';
-import { useUpload as useUploadState } from '../../../../context/UploadContext/UploadContext';
+import { useUploadStore } from '../../../../store/useUploadStore';
 
 export default function SubmitButton({ onClick }: { onClick: () => void }) {
-    const { uploadState } = useUploadState();
+    const uploadState = useUploadStore((s) => s.uploadState);
     const enabled = uploadState === 'uploaded';
 
     return (

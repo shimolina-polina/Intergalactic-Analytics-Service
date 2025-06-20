@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './UploadField.module.css';
 import UploadButton from '../../../UI/UploadButton/UploadButton';
-import { useUpload as useUploadState } from '../../../../context/UploadContext/UploadContext';
 import type { UploadState } from '../../../UI/UploadButton/UploadButton';
 import { useAggregationStore } from '../../../../store/useAggregationStore';
+import { useUploadStore } from '../../../../store/useUploadStore';
 
 type InfoObject = {
     text: string;
@@ -16,7 +16,8 @@ export default function UploadField({ setFile }: { setFile: (file: File | undefi
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [isDragging, setIsDragging] = useState(false);
     const [fileName, setFileName] = useState<string>('');
-    const { uploadState, setUploadState } = useUploadState();
+    const uploadState = useUploadStore((s) => s.uploadState);
+    const setUploadState = useUploadStore((s) => s.setUploadState);
 
     const error = useAggregationStore((s) => s.error);
     const isLoading = useAggregationStore((s) => s.isLoading);
