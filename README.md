@@ -1,54 +1,65 @@
-# React + TypeScript + Vite
+## Intergalactic Analytics Service
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Запуск проекта
 
-Currently, two official plugins are available:
+### 1. Установка зависимостей
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Запуск в dev-режиме
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm run dev
 ```
+
+### 3. Сборка для продакшена
+
+```bash
+npm run build
+```
+
+---
+
+## Архитектура проекта
+
+```
+src/
+├── components/              // UI-компоненты
+│   ├── AnalyticsComponents/ // Хайлайты и аналитика
+│   ├── GeneratorComponents/ // Компоненты генератора данных
+|   ├── HistoryComponents/   // История операций
+|   ├── Layout/              // Обёртка и шапка сайта
+│   └── UI/                  // Переиспользуемые UI-компоненты
+│
+├── pages/                   // Страницы приложения
+│   ├── AnalyticsPage.tsx
+│   ├── GeneratorPage.tsx
+│   └── HistoryPage.tsx
+│
+├── api/                     // Взаимодействие с API (fetch-запросы)
+│   ├── aggregationApi.ts
+│   ├── generationApi.ts
+│   └── historyApi.ts
+|
+├── services/                // Бизнес-логика
+│   ├── aggregationService.ts
+│   ├── generationService.ts
+│   └── historyService.ts
+│
+├── store/                   // Zustand-хранилища для состояния
+│   ├── useAggregationStore.ts
+│   ├── useDownloadStore.ts
+│   ├── useGenerationStore.ts
+│   ├── useHistoryStore.ts
+│   └── useUploadStore.ts
+│
+├── styles/                 // Общие стили - шрифты + переменные
+│
+└── utils/                  // Утилиты
+    ├── daysToDate.ts
+    └── normalizeMetrics.ts
+```
+
+
