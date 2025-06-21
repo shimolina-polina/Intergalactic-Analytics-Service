@@ -5,6 +5,7 @@
     border: none;
     cursor: pointer;
     color: #201b10;
+    flex: 1
 }
 
 .primary {
@@ -64,6 +65,7 @@
     align-items: center;
     gap: 10px;
     justify-content: space-between;
+    width: 100%;
 }
 
 .clearButton {
@@ -77,4 +79,10 @@
 }
 .hidden {
     display: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

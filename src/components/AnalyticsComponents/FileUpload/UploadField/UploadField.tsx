@@ -4,6 +4,7 @@ import UploadButton from '../../../UI/UploadButton/UploadButton';
 import type { UploadState } from '../../../UI/UploadButton/UploadButton';
 import { useAggregationStore } from '../../../../store/useAggregationStore';
 import { useUploadStore } from '../../../../store/useUploadStore';
+import { useAggregationService } from '../../../../services/aggregationService';
 
 type InfoObject = {
     text: string;
@@ -12,31 +13,16 @@ type InfoObject = {
 
 type InfoMap = Map<UploadState, InfoObject>;
 
-export default function UploadField({ setFile }: { setFile: (file: File | undefined) => void }) {
+export default function UploadField() {
+
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [isDragging, setIsDragging] = useState(false);
-    const [fileName, setFileName] = useState<string>('');
     const uploadState = useUploadStore((s) => s.uploadState);
-    const setUploadState = useUploadStore((s) => s.setUploadState);
-
+    const file = useUploadStore((s) => s.file);
     const error = useAggregationStore((s) => s.error);
-    const isLoading = useAggregationStore((s) => s.isLoading);
-    const setMetrics = useAggregationStore((s) => s.setMetrics);
-    const setError = useAggregationStore((s) => s.setError);
-    const inputDisabled =
-        !!fileName.length ||
-        uploadState === 'done' ||
-        uploadState === 'error' ||
-        uploadState === 'uploaded' ||
-        uploadState === 'parsing';
+    const { handleFile, handleClear } = useAggregationService();
 
-    useEffect(() => {
-        if (error?.length) setUploadState('error');
-    }, [error]);
-
-    useEffect(() => {
-        if (isLoading) setUploadState('parsing');
-    }, [isLoading]);
+    const inputDisabled = ['uploaded', 'parsing', 'done', 'error'].includes(uploadState);
 
     const map: InfoMap = new Map([
         [
@@ -49,7 +35,7 @@ export default function UploadField({ setFile }: { setFile: (file: File | undefi
         [
             'uploaded',
             {
-                text: fileName,
+                text: file?.name ?? '',
                 hintText: 'файл загружен!',
             },
         ],
@@ -63,29 +49,19 @@ export default function UploadField({ setFile }: { setFile: (file: File | undefi
         [
             'done',
             {
-                text: fileName,
+                text: file?.name ?? '',
                 hintText: 'готово!',
             },
         ],
         [
             'error',
             {
-                text: fileName,
+                text: file?.name ?? '',
                 hintText: error,
             },
         ],
     ]);
 
-    const handleFile = (file: File) => {
-        if (file.type === 'text/csv') {
-            setFile(file);
-            setUploadState('uploaded');
-            setFileName(file.name);
-            console.log('Загружен файл:', file.name);
-        } else {
-            alert('Пожалуйста, загрузите CSV файл.');
-        }
-    };
 
     const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -104,18 +80,6 @@ export default function UploadField({ setFile }: { setFile: (file: File | undefi
         setIsDragging(false);
     };
 
-    const handleClear = () => {
-        setFile(undefined);
-        setUploadState('primary');
-        setFileName('');
-
-        setMetrics(null);
-        setError('');
-
-        if (fileInputRef.current) {
-            fileInputRef.current.value = '';
-        }
-    };
 
     return (
         <div
@@ -141,7 +105,7 @@ export default function UploadField({ setFile }: { setFile: (file: File | undefi
                 hintText={map.get(uploadState)?.hintText ?? ''}
                 disabled={inputDisabled}
                 onClick={() => fileInputRef.current?.click()}
-                onClear={() => handleClear()}
+                onClear={() => handleClear(fileInputRef)}
             />
         </div>
     );

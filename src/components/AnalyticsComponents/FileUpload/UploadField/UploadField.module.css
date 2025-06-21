@@ -9,7 +9,6 @@
     justify-content: center;
     flex-direction: column;
     transition: background-color 0.3s ease;
-    cursor: pointer;
     font-size: var(--text-lg);
     line-height: 110%;
 }

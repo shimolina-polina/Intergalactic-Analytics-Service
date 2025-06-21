@@ -22,7 +22,7 @@ export default function UploadButton({
     onClear,
 }: UploadButtonProps) {
     return (
-        <>
+        <div className={styles.container}>
             <div className={styles.buttonContainer}>
                 <button
                     className={`${styles.uploadButton} ${styles[state]}`}
@@ -46,6 +46,6 @@ export default function UploadButton({
             <p className={`${styles.hint} ${state === 'error' ? styles.hintError : ''}`}>
                 {hintText}
             </p>
-        </>
+        </div>
     );
 }

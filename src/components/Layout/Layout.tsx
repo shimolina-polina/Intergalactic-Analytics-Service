@@ -1,13 +1,13 @@
-import type { ReactNode } from "react";
 import styles from './Layout.module.css'
 import Header from "./Header/Header";
+import { Outlet } from "react-router-dom";
 
-export default function Layout({children}: {children: ReactNode}) {
+export default function Layout() {
     return (
         <div className={styles.layoutContainer}>
             <Header />
             <div className={styles.childrenContainer}>
-                {children}
+                <Outlet />
             </div>
             
         </div>

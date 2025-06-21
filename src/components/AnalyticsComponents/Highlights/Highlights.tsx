@@ -1,7 +1,7 @@
 import { useAggregationStore } from '../../../store/useAggregationStore';
 import HighlightItem from './HighlightItem/HighlightItem';
 import styles from './Highlights.module.css';
-import type { AggregatedResult } from '../../../services/aggregateService';
+import type { AggregatedResult } from '../../../api/aggregationApi';
 import { useEffect } from 'react';
 
 const metricsMap: { key: keyof AggregatedResult; label: string }[] = [
@@ -18,10 +18,6 @@ const metricsMap: { key: keyof AggregatedResult; label: string }[] = [
 
 export default function Highlights() {
     const metrics = useAggregationStore((s) => s.metrics);
-
-    useEffect(() => {
-        console.log('metrics changed', metrics);
-    }, [metrics]);
 
     return (
         <div className={styles.container}>

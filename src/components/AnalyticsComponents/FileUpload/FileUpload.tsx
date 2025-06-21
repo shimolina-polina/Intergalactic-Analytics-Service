@@ -1,45 +1,12 @@
-import { useAggregationStore } from '../../../store/useAggregationStore';
+import { useAggregationService } from '../../../services/aggregationService';
+import { useUploadStore } from '../../../store/useUploadStore';
 import styles from './FileUpload.module.css';
 import SubmitButton from './SubmitButton/SubmitButton';
 import UploadField from './UploadField/UploadField';
-import { aggregateService } from '../../../services/aggregateService';
-import { useState } from 'react';
-import { normalizeMetrics } from '../../../utils/normalizeMetrics';
-import { useUploadStore } from '../../../store/useUploadStore';
 
 export default function FileUploadField() {
-    const setMetrics = useAggregationStore((state) => state.setMetrics);
-    const setLoading = useAggregationStore((state) => state.setLoading);
-    const setError = useAggregationStore((state) => state.setError);
-
-    const [file, setFile] = useState<File | undefined>(undefined);
-    const setUploadState = useUploadStore((s) => s.setUploadState);
-
-
-    const handleFileUpload = async () => {
-        console.log('started');
-        setLoading(true);
-        setError(null);
-
-        try {
-            if (file) {
-                await aggregateService.streamAggregation(
-                    file,
-                    (data) => {
-                        setMetrics(normalizeMetrics(data));
-                        console.log(data);
-                    },
-                    () => {
-                        setUploadState('done');
-                    },
-                );
-            }
-        } catch (err) {
-            setError(`Произошла ошибка при обработке файла: ${err}`);
-        } finally {
-            setLoading(false);
-        }
-    };
+    const file = useUploadStore((s) => s.file)
+    const { handleUpload } = useAggregationService();
 
     return (
         <div className={styles.container}>
@@ -54,8 +21,8 @@ export default function FileUploadField() {
                 </span>{' '}
                 о нём за сверхнизкое время
             </p>
-            <UploadField setFile={setFile} />
-            <SubmitButton onClick={() => handleFileUpload()} />
+            <UploadField />
+            <SubmitButton onClick={() => handleUpload(file)} />
         </div>
     );
 }

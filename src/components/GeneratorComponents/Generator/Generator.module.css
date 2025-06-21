@@ -4,6 +4,7 @@
     width: 100%;
     align-items: center;
     gap: 20px;
+    font-size: var(--text-lg);
 }
 
 .instruction {
