@@ -42,7 +42,9 @@ export const useAggregationService = () => {
             setFile(file);
             setUploadState('uploaded');
         } else {
-            alert('Пожалуйста, загрузите CSV файл.');
+            setFile(file);
+            setError(`загрузите csv файл!`);
+            setUploadState('error');
         }
     };
 

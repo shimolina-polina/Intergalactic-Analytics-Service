@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './UploadField.module.css';
 import UploadButton from '../../../UI/UploadButton/UploadButton';
 import type { UploadState } from '../../../UI/UploadButton/UploadButton';
@@ -62,7 +62,6 @@ export default function UploadField() {
         ],
     ]);
 
-
     const onDrop = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         setIsDragging(false);
@@ -79,7 +78,6 @@ export default function UploadField() {
     const onDragLeave = () => {
         setIsDragging(false);
     };
-
 
     return (
         <div
