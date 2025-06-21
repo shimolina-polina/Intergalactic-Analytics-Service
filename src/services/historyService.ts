@@ -23,5 +23,6 @@ export const useHistoryService = () => {
     removeItem: remove,
     clearHistory: clear,
     reload: load,
+    isHistory: !!(history.length > 0)
   };
 };

@@ -6,6 +6,11 @@
     cursor: pointer;
     color: #201b10;
     flex: 1;
+    max-width: 400px;
+    overflow: hidden;
+    text-wrap: nowrap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     
 }
 
@@ -69,6 +74,7 @@
     width: 100%;
     max-width: 500px;
 }
+
 
 .clearButton {
     background-color: #201b10;

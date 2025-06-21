@@ -3,6 +3,7 @@ import UploadButton, { type DownloadState } from '../../UI/UploadButton/UploadBu
 import styles from './Generator.module.css';
 import { useGenerationService } from '../../../services/generationService';
 import { useGenerationStore } from '../../../store/useGenerationStore';
+import { useEffect } from 'react';
 
 type InfoObject = {
     text: string;
@@ -13,6 +14,7 @@ type InfoMap = Map<DownloadState, InfoObject>;
 
 export default function Generator() {
     const downloadState = useDownloadStore((s) => s.downloadState);
+    const clear = useDownloadStore((s) => s.clear)
     const {handleStartGeneration, handleClear} = useGenerationService()
     const error = useGenerationStore((s) => s.error);
     const map: InfoMap = new Map([
@@ -45,6 +47,12 @@ export default function Generator() {
             },
         ],
     ]);
+
+    useEffect(() => {
+        return () => {
+            clear()
+        }
+    } ,[])
 
     return (
         <div className={styles.container}>
