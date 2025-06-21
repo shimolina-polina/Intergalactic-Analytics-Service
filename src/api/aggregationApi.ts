@@ -1,4 +1,3 @@
-import { normalizeMetrics } from "../utils/normalizeMetrics";
 
 export type AggregatedResult = {
     total_spend_galactic: number;

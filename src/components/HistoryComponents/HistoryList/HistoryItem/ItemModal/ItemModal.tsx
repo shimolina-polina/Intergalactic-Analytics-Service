@@ -1,9 +1,33 @@
+import { createPortal } from 'react-dom';
 import styles from './ItemModal.module.css';
+import type { NormalizedResult } from '../../../../../utils/normalizeMetrics';
+import { metricsMap } from '../../../../AnalyticsComponents/Highlights/Highlights';
 
-export default function ItemModal () {
-  return (
-    <div className={styles.container}>
-      
-    </div>
-  );
-};
+export default function ItemModal({ open, onClose, metrics }: { open: boolean; onClose: () => void, metrics: NormalizedResult | undefined }) {
+    return createPortal(
+        <>
+            {open && metrics !== undefined && (
+                <div className={styles.backdrop} onClick={onClose}>
+                    <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+                        <div className={styles.content}>
+                            {metricsMap.map(item => (
+                                <div className={styles.row}>
+                                    <p className={styles.value}>
+                                        {metrics[item.key]}
+                                    </p>
+                                    <p className={styles.label}>
+                                        {item.label}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                        <button className={styles.closeButton} onClick={onClose}>
+                            <img src='/close.svg'/>
+                        </button>
+                    </div>
+                </div>
+            )}
+        </>,
+        document.body,
+    );
+}

@@ -8,15 +8,19 @@
 
 .record {
     font-size: var(--text-base);
-    background-color: #CB81FF;
+    background-color: #cb81ff;
     border-radius: 40px;
     flex: 1;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 16px 20px;
-    color: #201B10;
+    color: #201b10;
     align-items: center;
+}
+
+.click {
+    cursor: pointer;
 }
 
 .title {
@@ -49,11 +53,11 @@
 }
 
 .enabled {
-    color: #201B10;
+    color: #201b10;
 }
 
 .disabled {
-    color: #8F64AE;
+    color: #8f64ae;
 }
 
 .delete {

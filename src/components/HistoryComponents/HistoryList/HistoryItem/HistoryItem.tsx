@@ -6,11 +6,14 @@ import smileFaceDisabled from '/smileFaceDisabled.svg'
 import sadFace from '/sadFace.svg'
 import sadFaceDisabled from '/sadFaceDisabled.svg'
 import trash from '/trash.svg'
+import ItemModal from './ItemModal/ItemModal';
+import { useState } from 'react';
 
 export default function HistoryItem({ item, onDelete }: { item: HistoryItem, onDelete: (id: string) => void; }) {
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
     return (
         <div className={styles.container}>
-            <div className={styles.record}>
+            <div className={`${styles.record} ${item.result === "success" ? styles.click : ''}`} onClick={() => setModalOpen(true)}>
                 <div className={styles.title}>
                     <img src={fileIcon} className={styles.fileIcon}/>
                     <p className={styles.titleText}>{item.title}</p>
@@ -28,6 +31,7 @@ export default function HistoryItem({ item, onDelete }: { item: HistoryItem, onD
             <button className={styles.delete} onClick={() => onDelete(item.id)}>
                 <img src={trash}/>
             </button>
+            <ItemModal open={modalOpen} onClose={() => setModalOpen(false)} metrics={item.metrics}/>
         </div>
     );
 }
