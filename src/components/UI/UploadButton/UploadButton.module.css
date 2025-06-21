@@ -5,7 +5,8 @@
     border: none;
     cursor: pointer;
     color: #201b10;
-    flex: 1
+    flex: 1;
+    
 }
 
 .primary {
@@ -66,6 +67,7 @@
     gap: 10px;
     justify-content: space-between;
     width: 100%;
+    max-width: 500px;
 }
 
 .clearButton {

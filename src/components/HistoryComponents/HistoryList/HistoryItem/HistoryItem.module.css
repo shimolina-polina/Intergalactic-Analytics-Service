@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.record {
+    font-size: var(--text-base);
+    background-color: #CB81FF;
+    border-radius: 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px 20px;
+    color: #201B10;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    width: 327px;
+    gap: 10px;
+}
+
+.titleText {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 1;
+}
+
+.fileIcon {
+    width: 22px;
+    height: 28px;
+}
+
+.status {
+    display: flex;
+    padding: 10px;
+    gap: 8px;
+}
+
+.enabled {
+    color: #201B10;
+}
+
+.disabled {
+    color: #8F64AE;
+}
+
+.delete {
+    background-color: #fff;
+    border-radius: 20px;
+    width: 87px;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

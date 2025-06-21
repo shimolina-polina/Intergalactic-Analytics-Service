@@ -2,6 +2,7 @@ import { useDownloadStore } from '../../../store/useDownloadStore';
 import UploadButton, { type DownloadState } from '../../UI/UploadButton/UploadButton';
 import styles from './Generator.module.css';
 import { useGenerationService } from '../../../services/generationService';
+import { useGenerationStore } from '../../../store/useGenerationStore';
 
 type InfoObject = {
     text: string;
@@ -13,7 +14,7 @@ type InfoMap = Map<DownloadState, InfoObject>;
 export default function Generator() {
     const downloadState = useDownloadStore((s) => s.downloadState);
     const {handleStartGeneration, handleClear} = useGenerationService()
-
+    const error = useGenerationStore((s) => s.error);
     const map: InfoMap = new Map([
         [
             'start',
@@ -40,7 +41,7 @@ export default function Generator() {
             'error',
             {
                 text: 'Ошибка',
-                hintText: 'error',
+                hintText: error,
             },
         ],
     ]);

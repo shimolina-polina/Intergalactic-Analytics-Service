@@ -16,7 +16,7 @@ export const generationApi = {
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`Ошибка при получении отчета: ${errorText}`);
+            throw new Error(`${response.status}: ${errorText}`);
         }
         return await response.blob();
     },

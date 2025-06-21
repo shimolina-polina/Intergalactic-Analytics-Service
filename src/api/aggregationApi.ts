@@ -1,3 +1,5 @@
+import { normalizeMetrics } from "../utils/normalizeMetrics";
+
 export type AggregatedResult = {
     total_spend_galactic: number;
     rows_affected: number;
@@ -17,7 +19,7 @@ export const aggregationApi = {
     async streamAggregation(
         file: File,
         onData: (data: AggregatedResult) => void,
-        onComplete?: () => void,
+        onComplete?: (data: AggregatedResult) => void,
     ): Promise<void> {
         const formData = new FormData();
         formData.append('file', file);
@@ -37,7 +39,7 @@ export const aggregationApi = {
                     errorText = await response.text();
                 }
 
-                throw new Error(`Ошибка ${response.status}: ${errorText}`);
+                throw new Error(`${response.status}: ${errorText}`);
             }
 
             if (!response.body) {
@@ -47,7 +49,17 @@ export const aggregationApi = {
             const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
 
             let buffer = '';
-
+            let result: AggregatedResult = {
+                total_spend_galactic: 0,
+                rows_affected: 0,
+                less_spent_at: 0,
+                big_spent_at: 0,
+                less_spent_value: 0,
+                big_spent_value: 0,
+                average_spend_galactic: 0,
+                big_spent_civ: '',
+                less_spent_civ: '',
+            };
             while (true) {
                 const { value, done } = await reader.read();
                 if (done) break;
@@ -60,7 +72,7 @@ export const aggregationApi = {
                     for (const line of lines) {
                         if (line.trim()) {
                             try {
-                                const result: AggregatedResult = JSON.parse(line);
+                                result = JSON.parse(line);
                                 onData(result);
                             } catch (e) {
                                 console.error('Ошибка парсинга строки JSON:', e);
@@ -69,7 +81,7 @@ export const aggregationApi = {
                     }
                 }
             }
-            onComplete?.();
+            onComplete?.(result);
         } catch (err) {
             throw new Error('Ошибка:' + err);
         }

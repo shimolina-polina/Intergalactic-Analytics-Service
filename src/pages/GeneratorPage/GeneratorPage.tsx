@@ -6,11 +6,9 @@ interface GeneratorPageProps {}
 
 const GeneratorPage: React.FC<GeneratorPageProps> = ({}) => {
     return (
-        
             <div className={styles.container}>
                 <Generator />
             </div>
-        
     );
 };
 
