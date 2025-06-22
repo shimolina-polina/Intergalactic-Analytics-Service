@@ -1,4 +1,3 @@
-
 export type AggregatedResult = {
     total_spend_galactic: number;
     rows_affected: number;

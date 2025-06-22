@@ -2,9 +2,7 @@ import Generator from '../../components/GeneratorComponents/Generator/Generator'
 
 import styles from './GeneratorPage.module.css';
 
-interface GeneratorPageProps {}
-
-const GeneratorPage: React.FC<GeneratorPageProps> = ({}) => {
+const GeneratorPage = () => {
     return (
             <div className={styles.container}>
                 <Generator />

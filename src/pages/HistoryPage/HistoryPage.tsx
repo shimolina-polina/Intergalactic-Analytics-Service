@@ -3,9 +3,8 @@ import GenerateButton from '../../components/HistoryComponents/GenerateButton/Ge
 import HistoryList from '../../components/HistoryComponents/HistoryList/HistoryList';
 import styles from './HistoryPage.module.css';
 
-interface HistoryPageProps {}
 
-const HistoryPage: React.FC<HistoryPageProps> = ({}) => {
+const HistoryPage = () => {
     return <div className={styles.container}>
         <HistoryList />
         <div className={styles.buttons}>
