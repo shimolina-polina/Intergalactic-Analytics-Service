@@ -61,5 +61,3 @@ src/
     ├── daysToDate.ts
     └── normalizeMetrics.ts
 ```
-
-

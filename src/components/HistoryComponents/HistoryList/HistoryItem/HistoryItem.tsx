@@ -25,7 +25,7 @@ export default function HistoryItem({
                 onClick={() => setModalOpen(true)}
             >
                 <div className={styles.title}>
-                    <img src={fileIcon} className={styles.fileIcon} alt={"Файл"}/>
+                    <img src={fileIcon} className={styles.fileIcon} alt={'Файл'} />
                     <p className={styles.titleText}>{item.title}</p>
                 </div>
                 <p>{item.createdAt}</p>
@@ -34,9 +34,9 @@ export default function HistoryItem({
                 >
                     <p>Обработан успешно</p>
                     {item.result === 'success' ? (
-                        <img src={smileFace} alt={"Успех"}/>
+                        <img src={smileFace} alt={'Успех'} />
                     ) : (
-                        <img src={smileFaceDisabled} alt={"Неудача"}/>
+                        <img src={smileFaceDisabled} alt={'Неудача'} />
                     )}
                 </div>
                 <div
@@ -44,14 +44,14 @@ export default function HistoryItem({
                 >
                     <p>Не удалось обработать</p>
                     {item.result === 'success' ? (
-                        <img src={sadFaceDisabled} alt={"Успех"}/>
+                        <img src={sadFaceDisabled} alt={'Успех'} />
                     ) : (
-                        <img src={sadFace} alt={"Неудача"}/>
+                        <img src={sadFace} alt={'Неудача'} />
                     )}
                 </div>
             </button>
             <button className={styles.delete} onClick={() => onDelete(item.id)}>
-                <img src={trash} alt={"Удалить"}/>
+                <img src={trash} alt={'Удалить'} />
             </button>
             <ItemModal
                 open={modalOpen}

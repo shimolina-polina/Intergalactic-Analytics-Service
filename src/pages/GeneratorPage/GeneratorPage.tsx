@@ -4,9 +4,9 @@ import styles from './GeneratorPage.module.css';
 
 const GeneratorPage = () => {
     return (
-            <div className={styles.container}>
-                <Generator />
-            </div>
+        <div className={styles.container}>
+            <Generator />
+        </div>
     );
 };
 

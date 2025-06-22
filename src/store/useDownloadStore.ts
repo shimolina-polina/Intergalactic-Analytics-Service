@@ -1,7 +1,6 @@
 import { create } from 'zustand';
 import type { DownloadState } from '../components/UI/UploadButton/UploadButton';
 
-
 interface DownloadStore {
     downloadState: DownloadState;
     setDownloadState: (state: DownloadState) => void;
@@ -11,5 +10,5 @@ interface DownloadStore {
 export const useDownloadStore = create<DownloadStore>((set) => ({
     downloadState: 'start',
     setDownloadState: (state) => set({ downloadState: state }),
-    clear: () => set({downloadState: 'start'})
+    clear: () => set({ downloadState: 'start' }),
 }));

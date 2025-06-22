@@ -10,9 +10,6 @@ export type AggregatedResult = {
     less_spent_civ: string;
 };
 
-
-
-
 export const aggregationApi = {
     async streamAggregation(
         file: File,

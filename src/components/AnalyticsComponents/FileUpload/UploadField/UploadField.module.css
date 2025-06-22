@@ -1,7 +1,7 @@
 .container {
     width: 100%;
     min-height: 240px;
-    background-color: #EACDFF;
+    background-color: #eacdff;
     border-radius: 40px;
     margin-top: 20px;
     display: flex;
@@ -14,12 +14,12 @@
 }
 
 .dragOver {
-    background-color: #D4FAE6;
+    background-color: #d4fae6;
 }
 
 .disabled {
     background-color: transparent;
-    border: 1px solid #201B10;
+    border: 1px solid #201b10;
     cursor: auto;
 }
 
@@ -35,7 +35,7 @@
 .hint {
     margin-top: 10px;
 }
- 
+
 .notDisplayed {
     display: none;
 }

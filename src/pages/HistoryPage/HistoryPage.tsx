@@ -3,15 +3,16 @@ import GenerateButton from '../../components/HistoryComponents/GenerateButton/Ge
 import HistoryList from '../../components/HistoryComponents/HistoryList/HistoryList';
 import styles from './HistoryPage.module.css';
 
-
 const HistoryPage = () => {
-    return <div className={styles.container}>
-        <HistoryList />
-        <div className={styles.buttons}>
-            <GenerateButton />
-            <ClearAllButton />
+    return (
+        <div className={styles.container}>
+            <HistoryList />
+            <div className={styles.buttons}>
+                <GenerateButton />
+                <ClearAllButton />
+            </div>
         </div>
-    </div>;
+    );
 };
 
 export default HistoryPage;

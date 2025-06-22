@@ -1,9 +1,5 @@
-import styles from './Name.module.css'
+import styles from './Name.module.css';
 
-export default function Name () {
-    return (
-        <div className={styles.container}>
-            Межгалактическая аналитика
-        </div>
-    )
+export default function Name() {
+    return <div className={styles.container}>Межгалактическая аналитика</div>;
 }

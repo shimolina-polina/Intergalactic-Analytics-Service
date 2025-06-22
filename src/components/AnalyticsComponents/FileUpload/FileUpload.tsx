@@ -5,7 +5,7 @@ import SubmitButton from './SubmitButton/SubmitButton';
 import UploadField from './UploadField/UploadField';
 
 export default function FileUploadField() {
-    const file = useUploadStore((s) => s.file)
+    const file = useUploadStore((s) => s.file);
     const { handleUpload } = useAggregationService();
 
     return (

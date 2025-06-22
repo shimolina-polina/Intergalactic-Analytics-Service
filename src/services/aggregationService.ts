@@ -11,7 +11,7 @@ export const useAggregationService = () => {
     const setUploadState = useUploadStore((s) => s.setUploadState);
     const setFile = useUploadStore((s) => s.setFile);
     const clearUpload = useUploadStore((s) => s.clear);
-    const clearAggregation = useAggregationStore((s) => s.clear)
+    const clearAggregation = useAggregationStore((s) => s.clear);
     const { addItem } = useHistoryService();
 
     const handleUpload = async (file: File | undefined) => {
@@ -28,15 +28,14 @@ export const useAggregationService = () => {
                     },
                     (data) => {
                         setUploadState('done');
-                        addItem(file.name, "success", normalizeMetrics(data))
+                        addItem(file.name, 'success', normalizeMetrics(data));
                     },
                 );
             }
         } catch (err) {
             setUploadState('error');
             setError(`Произошла ошибка при обработке файла: ${err}`);
-            if (file)
-                addItem(file.name, "fail", undefined)
+            if (file) addItem(file.name, 'fail', undefined);
         } finally {
             setLoading(false);
         }
@@ -65,6 +64,6 @@ export const useAggregationService = () => {
     return {
         handleUpload,
         handleFile,
-        handleClear
+        handleClear,
     };
 };

@@ -11,7 +11,6 @@
     text-wrap: nowrap;
     white-space: nowrap;
     text-overflow: ellipsis;
-    
 }
 
 .primary {
@@ -19,7 +18,7 @@
 }
 
 .start {
-    background-color: #2AE881;
+    background-color: #2ae881;
     border-radius: 25px;
     font-weight: 500;
 }
@@ -74,7 +73,6 @@
     /* width: 100%; */
     max-width: 550px;
 }
-
 
 .clearButton {
     background-color: #201b10;

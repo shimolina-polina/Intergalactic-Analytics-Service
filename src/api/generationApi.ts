@@ -10,9 +10,12 @@ export const generationApi = {
             maxSpend,
         });
 
-        const response = await fetch(`${import.meta.env.VITE_BASE_URL}/report?${params.toString()}`, {
-            method: 'GET',
-        });
+        const response = await fetch(
+            `${import.meta.env.VITE_BASE_URL}/report?${params.toString()}`,
+            {
+                method: 'GET',
+            },
+        );
 
         if (!response.ok) {
             const errorText = await response.text();

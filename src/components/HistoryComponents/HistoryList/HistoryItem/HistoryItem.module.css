@@ -67,6 +67,6 @@
 }
 
 button:disabled {
-  pointer-events: none;
-  cursor: auto;
+    pointer-events: none;
+    cursor: auto;
 }

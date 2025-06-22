@@ -15,5 +15,3 @@ export const useGenerationStore = create<GenerationStore>((set) => ({
     setError: (message) => set({ error: message }),
     clear: () => set({ isLoading: false, error: null }),
 }));
-
-

@@ -15,10 +15,8 @@ export const useAggregationStore = create<AggregationStore>((set) => ({
     metrics: null,
     isLoading: false,
     error: null,
-    setMetrics: (data) => set({metrics: data}),
+    setMetrics: (data) => set({ metrics: data }),
     setLoading: (loading) => set({ isLoading: loading }),
     setError: (message) => set({ error: message }),
     clear: () => set({ metrics: null, isLoading: false, error: null }),
 }));
-
-

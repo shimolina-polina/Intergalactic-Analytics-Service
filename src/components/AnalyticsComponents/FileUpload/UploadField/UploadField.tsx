@@ -14,7 +14,6 @@ type InfoObject = {
 type InfoMap = Map<UploadState, InfoObject>;
 
 export default function UploadField() {
-
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [isDragging, setIsDragging] = useState(false);
     const uploadState = useUploadStore((s) => s.uploadState);

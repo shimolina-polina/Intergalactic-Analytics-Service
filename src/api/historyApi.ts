@@ -1,4 +1,4 @@
-import type { NormalizedResult } from "../utils/normalizeMetrics";
+import type { NormalizedResult } from '../utils/normalizeMetrics';
 
 const HISTORY_KEY = 'history';
 
@@ -7,7 +7,7 @@ export type HistoryItem = {
     title: string;
     createdAt: string;
     result: 'success' | 'fail';
-    metrics: NormalizedResult | undefined
+    metrics: NormalizedResult | undefined;
 };
 
 export const historyApi = {

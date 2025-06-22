@@ -7,16 +7,16 @@
 }
 
 .placeholder {
-    color: #CB81FF;
+    color: #cb81ff;
     font-size: var(--text-xl);
     text-align: center;
     line-height: 110%;
 }
 
 .grid {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(4, auto);
-  gap: 10px 39px;
-  width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, auto);
+    gap: 10px 39px;
+    width: 100%;
 }

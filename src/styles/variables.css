@@ -1,7 +1,7 @@
 :root {
     /* Текст */
-  --text-base: 3rem;
-  --text-sm: 2rem;
-  --text-lg: 3.5rem;
-  --text-xl: 4rem;
+    --text-base: 3rem;
+    --text-sm: 2rem;
+    --text-lg: 3.5rem;
+    --text-xl: 4rem;
 }

@@ -14,8 +14,8 @@ type InfoMap = Map<DownloadState, InfoObject>;
 
 export default function Generator() {
     const downloadState = useDownloadStore((s) => s.downloadState);
-    const clear = useDownloadStore((s) => s.clear)
-    const {handleStartGeneration, handleClear} = useGenerationService()
+    const clear = useDownloadStore((s) => s.clear);
+    const { handleStartGeneration, handleClear } = useGenerationService();
     const error = useGenerationStore((s) => s.error);
     const map: InfoMap = new Map([
         [
@@ -50,9 +50,9 @@ export default function Generator() {
 
     useEffect(() => {
         return () => {
-            clear()
-        }
-    } ,[clear])
+            clear();
+        };
+    }, [clear]);
 
     return (
         <div className={styles.container}>
