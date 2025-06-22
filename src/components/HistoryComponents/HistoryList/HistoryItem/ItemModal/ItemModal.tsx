@@ -11,7 +11,7 @@ export default function ItemModal({ open, onClose, metrics }: { open: boolean; o
                     <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
                         <div className={styles.content}>
                             {metricsMap.map(item => (
-                                <div className={styles.row}>
+                                <div className={styles.row} key={item.key}>
                                     <p className={styles.value}>
                                         {metrics[item.key]}
                                     </p>
