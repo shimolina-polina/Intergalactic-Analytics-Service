@@ -18,9 +18,13 @@ export default function ItemModal({
                 <div
                     className={styles.backdrop}
                     onClick={onClose}
-                    onKeyDown={(e) => e.key === 'Enter' && onClose()}
                     role="button"
                     tabIndex={0}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            onClose();
+                        }
+                    }}
                 >
                     <div
                         className={styles.modal}

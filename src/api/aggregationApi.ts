@@ -33,7 +33,7 @@ export const aggregationApi = {
                 try {
                     const errorJson = await response.json();
                     errorText = JSON.stringify(errorJson);
-                } catch (e) {
+                } catch {
                     errorText = await response.text();
                 }
 
@@ -73,7 +73,7 @@ export const aggregationApi = {
                                 result = JSON.parse(line);
                                 onData(result);
                             } catch (e) {
-                                console.error('Ошибка парсинга строки JSON:', e);
+                                throw Error(`Ошибка парсинга строки JSON: ${e}`);
                             }
                         }
                     }

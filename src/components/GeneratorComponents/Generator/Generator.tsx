@@ -52,7 +52,7 @@ export default function Generator() {
         return () => {
             clear()
         }
-    } ,[])
+    } ,[clear])
 
     return (
         <div className={styles.container}>

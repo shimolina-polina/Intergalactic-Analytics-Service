@@ -19,14 +19,10 @@ export default function HistoryItem({
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     return (
         <div className={styles.container}>
-            <div
-                className={`${styles.record} ${item.result === 'success' ? styles.click : ''}`}
-                role="button"
+            <button
+                className={`${styles.record}`}
+                disabled={item.result === 'fail'}
                 onClick={() => setModalOpen(true)}
-                onKeyDown={(e) => {
-                    if (e.key === 'Enter') setModalOpen(true);
-                }}
-                tabIndex={0}
             >
                 <div className={styles.title}>
                     <img src={fileIcon} className={styles.fileIcon} alt={"Файл"}/>
@@ -40,7 +36,7 @@ export default function HistoryItem({
                     {item.result === 'success' ? (
                         <img src={smileFace} alt={"Успех"}/>
                     ) : (
-                        <img src={smileFaceDisabled} alt={"Фейл"}/>
+                        <img src={smileFaceDisabled} alt={"Неудача"}/>
                     )}
                 </div>
                 <div
@@ -48,14 +44,14 @@ export default function HistoryItem({
                 >
                     <p>Не удалось обработать</p>
                     {item.result === 'success' ? (
-                        <img src={sadFaceDisabled} />
+                        <img src={sadFaceDisabled} alt={"Успех"}/>
                     ) : (
-                        <img src={sadFace} />
+                        <img src={sadFace} alt={"Неудача"}/>
                     )}
                 </div>
-            </div>
+            </button>
             <button className={styles.delete} onClick={() => onDelete(item.id)}>
-                <img src={trash} />
+                <img src={trash} alt={"Удалить"}/>
             </button>
             <ItemModal
                 open={modalOpen}
