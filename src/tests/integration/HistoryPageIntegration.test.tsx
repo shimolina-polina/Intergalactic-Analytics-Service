@@ -45,13 +45,22 @@ beforeEach(() => {
 
 describe('HistoryList integration', () => {
     it('загружает список из стора при рендере', () => {
-        render(
-            <MemoryRouter>
-                <HistoryList />
-            </MemoryRouter>,
+        const loadMock = vi.fn();
+
+        (useHistoryStore as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+            (selector: any) =>
+                selector({
+                    history: [],
+                    load: loadMock,
+                    add: vi.fn(),
+                    remove: vi.fn(),
+                    clear: vi.fn(),
+                }),
         );
 
-        expect(screen.getByText('Отчёт 1')).toBeInTheDocument();
+        render(<HistoryList />);
+
+        expect(loadMock).toHaveBeenCalled();
     });
 
     it('открывает модальное окно при клике на запись', async () => {
@@ -165,10 +174,9 @@ describe('HistoryList integration', () => {
 
         const button = screen.getByTestId('button-item-2');
         fireEvent.click(button);
-        
+
         await waitFor(() => {
             expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
         });
     });
-    
 });

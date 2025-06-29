@@ -1,6 +1,7 @@
 import { describe, it, vi, expect, beforeEach } from 'vitest';
 import { useHistoryService } from '../../services/historyService';
 import { useHistoryStore } from '../../store/useHistoryStore';
+import { render } from '@testing-library/react';
 
 const clearMock = vi.fn();
 
@@ -27,4 +28,5 @@ describe('useHistoryService', () => {
         clearHistory();
         expect(clearMock).toHaveBeenCalled();
     });
+    
 });
