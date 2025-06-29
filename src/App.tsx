@@ -1,20 +1,10 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import AnalyticsPage from './pages/AnalyticsPage/AnalyticsPage';
-import HistoryPage from './pages/HistoryPage/HistoryPage';
-import GeneratorPage from './pages/GeneratorPage/GeneratorPage';
-import Layout from './components/Layout/Layout';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './AppRoutes';
 
 function App() {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Navigate to="/analytics" replace />} />
-                    <Route path="/analytics" element={<AnalyticsPage />} />
-                    <Route path="/generator" element={<GeneratorPage />} />
-                    <Route path="/history" element={<HistoryPage />} />
-                </Route>
-            </Routes>
+            <AppRoutes/>
         </BrowserRouter>
     );
 }

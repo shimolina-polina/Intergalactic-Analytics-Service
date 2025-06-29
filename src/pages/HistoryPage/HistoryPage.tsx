@@ -5,7 +5,7 @@ import styles from './HistoryPage.module.css';
 
 const HistoryPage = () => {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid="history-page">
             <HistoryList />
             <div className={styles.buttons}>
                 <GenerateButton />
