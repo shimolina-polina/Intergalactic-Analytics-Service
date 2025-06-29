@@ -3,16 +3,12 @@ import UploadField from '../../components/AnalyticsComponents/FileUpload/UploadF
 import { useUploadStore } from '../../store/useUploadStore';
 import FileUploadField from '../../components/AnalyticsComponents/FileUpload/FileUpload';
 
-
 describe('FileUpload', () => {
-
     afterEach(() => {
         cleanup();
         useUploadStore.getState().clear();
         console.log('State after clear:', useUploadStore.getState());
     });
-
-
 
     it('загружает файл через кнопку', () => {
         render(<UploadField />);
@@ -42,7 +38,6 @@ describe('FileUpload', () => {
 
     it('загружает файл через drag&drop', () => {
         render(<UploadField />);
-        screen.debug();
 
         const dropArea = screen.getByTestId('drop-area');
 
@@ -60,7 +55,6 @@ describe('FileUpload', () => {
 
     it('загружает не csv файл через drag&drop', () => {
         render(<UploadField />);
-        screen.debug();
 
         const dropArea = screen.getByTestId('drop-area');
 
@@ -87,7 +81,8 @@ describe('FileUpload', () => {
         const submitButton = screen.getByRole('button', { name: /отправить/i });
         fireEvent.click(submitButton);
 
-        expect(screen.getByTestId('loading-indicator')).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByTestId('loading-indicator')).toBeInTheDocument();
+        });
     });
-
 });
