@@ -84,7 +84,7 @@ describe('useAggregationService', () => {
         expect(ref.current!.value).toBe('');
     });
 
-    it('загружает файл и вызывает стрим + addItem', async () => {
+    it('загружает файл и вызывает стрим + сохраняет в localStorage', async () => {
         const { handleUpload } = useAggregationService();
         const file = new File(['content'], 'test.csv', { type: 'text/csv' });
 
