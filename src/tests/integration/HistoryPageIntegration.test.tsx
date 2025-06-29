@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import HistoryList from '../../components/HistoryComponents/HistoryList/HistoryList';
 import { useHistoryStore } from '../../store/useHistoryStore';

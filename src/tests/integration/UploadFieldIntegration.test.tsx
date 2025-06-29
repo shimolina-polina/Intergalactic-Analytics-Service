@@ -2,13 +2,16 @@ import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/re
 import UploadField from '../../components/AnalyticsComponents/FileUpload/UploadField/UploadField';
 import { useUploadStore } from '../../store/useUploadStore';
 
-describe('File upload', () => {
+
+describe('FileUpload', () => {
+
     afterEach(() => {
         cleanup();
         useUploadStore.getState().clear();
         console.log('State after clear:', useUploadStore.getState());
-
     });
+
+
 
     it('загружает файл через кнопку', () => {
         render(<UploadField />);
@@ -38,7 +41,7 @@ describe('File upload', () => {
 
     it('загружает файл через drag&drop', () => {
         render(<UploadField />);
-        screen.debug()
+        screen.debug();
 
         const dropArea = screen.getByTestId('drop-area');
 
