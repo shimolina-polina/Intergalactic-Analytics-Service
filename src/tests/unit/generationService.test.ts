@@ -61,12 +61,23 @@ describe('generationService', () => {
         expect(actualFilename).toBe('input.csv');
     });
 
-    it('устанавливает состояние "done" после успешной генерации', async () => {
+    it('устанавливает состояние done ПОСЛЕ вызова downloadFile', async () => {
         const service = useGenerationService();
         await service.handleStartGeneration();
-        expect(setDownloadStateMock).toHaveBeenCalledWith('done');
-    });
 
+        const downloadFileMock = downloadFile as Mock;
+
+        const doneCallIndex = setDownloadStateMock.mock.calls.findIndex(
+            (call) => call[0] === 'done',
+        );
+
+        const doneCallOrder = setDownloadStateMock.mock.invocationCallOrder[doneCallIndex];
+
+        const downloadFileCallOrder = downloadFileMock.mock.invocationCallOrder[0];
+
+        expect(downloadFileCallOrder).toBeLessThan(doneCallOrder);
+    });
+    
     it('выключает лоадер после завершения', async () => {
         const service = useGenerationService();
         await service.handleStartGeneration();
