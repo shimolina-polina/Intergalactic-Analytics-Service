@@ -1,4 +1,6 @@
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+/// <reference types="vitest" />
+ 
+import { vi, describe, it, expect, beforeEach, type Mock } from 'vitest';
 import { useGenerationService } from '../../services/generationService';
 import { generationApi } from '../../api/generationApi';
 import { useDownloadStore } from '../../store/useDownloadStore';
@@ -21,20 +23,20 @@ describe('generationService', () => {
     beforeEach(() => {
         vi.resetAllMocks();
 
-        (useDownloadStore as unknown as vi.Mock).mockImplementation((selector) =>
-            selector({
-                setDownloadState: setDownloadStateMock,
-                clear: clearMock,
-            }),
+        (useDownloadStore as unknown as ReturnType<typeof vi.fn>).mockImplementation((selector: (state: any) => any) =>
+                selector({
+                    setDownloadState: setDownloadStateMock,
+                    clear: clearMock,
+                }),
         );
-        (useGenerationStore as unknown as vi.Mock).mockImplementation((selector) =>
+        (useGenerationStore as unknown as ReturnType<typeof vi.fn>).mockImplementation((selector) =>
             selector({
                 setLoading: setLoadingMock,
                 setError: setErrorMock,
             }),
         );
 
-        (generationApi.getReport as vi.Mock).mockResolvedValue(fakeBlob);
+        (generationApi.getReport as ReturnType<typeof vi.fn>).mockResolvedValue(fakeBlob);
     });
 
     it('устанавливает состояние "parsing" при старте генерации', async () => {
@@ -53,12 +55,12 @@ describe('generationService', () => {
         const service = useGenerationService();
         await service.handleStartGeneration();
 
-        const [[actualBlob, actualFilename]] = (downloadFile as vi.Mock).mock.calls;
+        const [[actualBlob, actualFilename]] = (downloadFile as Mock).mock.calls;
 
         expect(actualBlob).toBeInstanceOf(Blob);
         expect(actualFilename).toBe('input.csv');
     });
-    
+
     it('устанавливает состояние "done" после успешной генерации', async () => {
         const service = useGenerationService();
         await service.handleStartGeneration();

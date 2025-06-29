@@ -25,5 +25,5 @@
 
         "types": ["vitest/globals", "vite/client"]
     },
-    "include": ["src", "setupTests.ts"]
+    "include": ["src", "src/tests", "setupTests.ts"]
 }
