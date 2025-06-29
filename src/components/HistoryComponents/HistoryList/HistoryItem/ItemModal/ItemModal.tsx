@@ -28,6 +28,7 @@ export default function ItemModal({
                 >
                     <div
                         className={styles.modal}
+                        data-testid="modal"
                         onClick={(e) => e.stopPropagation()}
                         onKeyDown={(e) => e.stopPropagation()}
                         role="button"

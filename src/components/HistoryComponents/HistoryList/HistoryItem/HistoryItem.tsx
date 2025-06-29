@@ -18,8 +18,9 @@ export default function HistoryItem({
 }) {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid={`history-item-${item.id}`}>
             <button
+                data-testid={`button-item-${item.id}`}
                 className={`${styles.record}`}
                 disabled={item.result === 'fail'}
                 onClick={() => setModalOpen(true)}
