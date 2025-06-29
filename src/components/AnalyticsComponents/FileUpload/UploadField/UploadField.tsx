@@ -81,11 +81,13 @@ export default function UploadField() {
     return (
         <div
             className={`${styles.container} ${isDragging ? styles.dragOver : ''} ${uploadState === 'uploaded' || inputDisabled ? styles.disabled : ''}`}
+            data-testid="drop-area"
             onDrop={onDrop}
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}
         >
             <input
+                data-testid="file-input"
                 type="file"
                 accept=".csv"
                 ref={fileInputRef}
