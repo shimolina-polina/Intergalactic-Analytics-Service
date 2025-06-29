@@ -1,5 +1,5 @@
 /// <reference types="vitest" />
- 
+
 import { vi, describe, it, expect, beforeEach, type Mock } from 'vitest';
 import { useGenerationService } from '../../services/generationService';
 import { generationApi } from '../../api/generationApi';
@@ -23,7 +23,8 @@ describe('generationService', () => {
     beforeEach(() => {
         vi.resetAllMocks();
 
-        (useDownloadStore as unknown as ReturnType<typeof vi.fn>).mockImplementation((selector: (state: any) => any) =>
+        (useDownloadStore as unknown as ReturnType<typeof vi.fn>).mockImplementation(
+            (selector: (state: any) => any) =>
                 selector({
                     setDownloadState: setDownloadStateMock,
                     clear: clearMock,
@@ -77,7 +78,7 @@ describe('generationService', () => {
 
         expect(downloadFileCallOrder).toBeLessThan(doneCallOrder);
     });
-    
+
     it('выключает лоадер после завершения', async () => {
         const service = useGenerationService();
         await service.handleStartGeneration();
@@ -108,5 +109,35 @@ describe('generationService', () => {
         const service = useGenerationService();
         service.handleClear();
         expect(clearMock).toHaveBeenCalled();
+    });
+
+    it('корректно обрабатывает пустой Blob', async () => {
+        (generationApi.getReport as ReturnType<typeof vi.fn>).mockResolvedValue(new Blob([]));
+
+        const service = useGenerationService();
+        await service.handleStartGeneration();
+
+        expect(setDownloadStateMock).toHaveBeenCalledWith('done');
+    });
+
+    it('обрабатывает Blob с неожидаемым типом application/json', async () => {
+        const weirdBlob = new Blob(['data'], { type: 'application/json' });
+        (generationApi.getReport as ReturnType<typeof vi.fn>).mockResolvedValue(weirdBlob);
+
+        const service = useGenerationService();
+        await service.handleStartGeneration();
+
+        expect(setDownloadStateMock).toHaveBeenCalledWith('done');
+    });
+
+    it('устанавливает ошибку, если downloadFile выбрасывает исключение', async () => {
+        (downloadFile as Mock).mockImplementation(() => {
+            throw new Error('download failed');
+        });
+
+        const service = useGenerationService();
+        await service.handleStartGeneration();
+
+        expect(setDownloadStateMock).toHaveBeenCalledWith('error');
     });
 });
