@@ -30,7 +30,12 @@ export default function UploadButton({
                     disabled={disabled}
                 >
                     {state === 'parsing' ? (
-                        <img src="/loader.svg" alt="Загрузка..." className={styles.loaderImg} />
+                        <img
+                            data-testid="loading-indicator"
+                            src="/loader.svg"
+                            alt="Загрузка..."
+                            className={styles.loaderImg}
+                        />
                     ) : (
                         text
                     )}
